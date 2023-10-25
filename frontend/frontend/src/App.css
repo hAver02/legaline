@@ -1,0 +1,131 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#root{ 
+  background-color: black;
+}
+/* aca arriba queda. */
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.header{
+  height: 15vh;
+}
+
+.section-derecha{
+  flex: 2;
+}
+/* ESTO VAAA */
+/* LISTA DE CASOS */
+/* .lista-casos button{
+  padding: 0.5rem;
+  background-color: #666;
+  border-radius: 50%;
+} */
+.lista-casos button:hover {
+  background-color: rgb(143, 240, 143);
+}
+/* molesta */
+/* .main{
+  height: 100%; 
+} */
+.container-casos{
+  /* max-height: 80vh; */
+  height: 85vh;
+  /* overflow-y: auto; */
+}
+
+.body-alarmas {
+  overflow-y: auto;
+}
+
+.alarmas-vencimiento-pronto{
+  color: rgb(235, 102, 102);
+}
+
+
+/* CHATTT */
+.chat {
+  overflow: hidden;
+  position: relative;
+}  
+ .container-messages {
+  max-height: 100%;
+  height: 100%;
+  overflow-y: auto;
+} 
+
+/* FORM CHAT ADD AMIGO */
+.agregar-amigo button{
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  border: 2px solid rgb(108, 244, 108);
+}
+.agregar-amigo button:hover{
+  background-color: rgb(108, 244, 108);
+  color: black;
+}
+
+/* INFO CASO */
+.form-personal{
+  box-shadow: 5px 5px rgba(124, 118, 118, 0.26);
+}
+.info-reco {
+  box-shadow: 5px 5px rgba(124, 118, 118, 0.26);
+}
+.trabajos-items input{ 
+  font-size: 1rem;
+  border:2px solid rgba(20, 19, 19, 0.735);
+  border-radius: 2rem;
+  color: black;
+  padding: 0.3rem 1rem;
+}
+
+
+/* LOGIN */
+#root{
+  color: white;
+  background-color: black;
+  min-height: 100vh;
+  overflow-y: auto;
+}
+
+/* ADD CASE */
+.container-addcase{
+  box-shadow: 3px 3px rgba(162, 162, 162, 0.458);
+}
+.add-friend-lista div{
+  display: flex;
+  justify-content: space-between;
+  border: 2px solid black;
+  border-radius: 2rem;
+  width: 50%;
+  padding-inline: 2rem;
+}
+
+
+/* MENU */
+.dropdown-menu:hover .options {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
