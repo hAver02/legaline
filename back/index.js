@@ -25,7 +25,7 @@ const server = http.createServer(app)
 
 
 const PORT = 3000
-// app.use(cookieParser())
+app.use(cookieParser())
 
 app.use(cors({
     origin : '*',

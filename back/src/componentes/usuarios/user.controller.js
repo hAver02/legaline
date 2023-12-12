@@ -11,12 +11,11 @@ async function getUsers(){
     }
 }
 async function getById(id){
-    console.log('id', id);
     try {
         const user = await userModel.findById(id).populate('casos').populate('amigos')
         return user
     } catch (error) {
-        return false
+        throw Error('Error al obtener el user!')
     }
 }
 async function getByEmail(email) {
