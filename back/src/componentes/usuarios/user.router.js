@@ -41,19 +41,7 @@ async (req, res, next) => {
         next(error)
     }
 })
-// route.post('/',validateToken,async (req, res, next) => {
-//     try {
-//         const user = req.body
-//         const created = await controller.createUser(user);
-//         if(validatorError(created)){
-//             const err = created[1]
-//             next(err)
-//         }
-//         res.json({ ok : true, user : created})
-//     } catch (error) {
-//         next(error)
-//     }
-// })
+
 route.delete('/:id',
     validatorHandler(idSchema, "params"),
 async (req, res, next) => {
@@ -65,11 +53,14 @@ async (req, res, next) => {
         next(error)
     }
 })
-route.put('/:id', 
+route.put('/:id',
+    // validateToken(),
     validatorHandler(idSchema,'params'),
     validatorHandler(updateUserSchema, 'body'),
 async(req, res, next) => {
+    console.log("Ver esto cuando actualizamos");
     const { id } = req.params
+    console.log(req.userID, id); 
     const updateUser = req.body;
     try {
         const update = await controller.updateUser(id, updateUser)

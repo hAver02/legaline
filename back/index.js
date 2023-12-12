@@ -1,12 +1,12 @@
 
 
 const express = require('express');
+const http = require('http')
 const cron = require('node-cron')
 const nodemailer = require('nodemailer')
 const cors = require('cors')
-const http = require('http')
 const { Server } = require('socket.io')
-const sendAlarmEmail = require('./src/utils/cron')
+// const sendAlarmEmail = require('./src/utils/cron')
 const { logError, handleError } = require('./src/middleware/error.handler');
 const  { mongoDBconnection } = require('./src/database/mongo.config')
 const cookieParser = require('cookie-parser');
@@ -18,7 +18,6 @@ const casosRoutes = require('./src/componentes/casos/casos.router')
 const sessionRoutes = require('./src/componentes/session/auth.route')
 const notiRoutes = require('./src/componentes/notificaciones/notificaciones.router')
 const controllerMessage = require('./src/componentes/message/messages.controller');
-const transporter = require('./src/utils/mailer');
 
 const app = express()
 const server = http.createServer(app)
@@ -26,10 +25,10 @@ const server = http.createServer(app)
 
 
 const PORT = 3000
-app.use(cookieParser())
+// app.use(cookieParser())
 
 app.use(cors({
-    origin : 'http://localhost:5173',
+    origin : '*',
     credentials : true
 }))
 
@@ -38,6 +37,7 @@ app.use(express.urlencoded( { extended : false } ) )
 app.use(express.json())
 
 const conectDB = async () => {
+    console.log('aca');
     await mongoDBconnection()
 }
 

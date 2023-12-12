@@ -2,9 +2,12 @@
 
 const { connect } = require('mongoose');
 const { config } = require('../config/config');
-//'mongodb://127.0.0.1:27017/prueba'
+//'mongodb://127.0.0.1:27017/prueba']
+// `mongodb://${config.dbHost}:${config.dbPort}/${config.dbName}`
+
+const connectUrl = `mongodb+srv://legaline:${config.passwordMongo}@cluster0.r0uayat.mongodb.net/?retryWrites=true&w=majority`
 const configConnection = {
-    url : `mongodb://${config.dbHost}:${config.dbPort}/${config.dbName}`,
+    url : connectUrl,
     options : {
         useNewUrlParser : true,
         useUnifiedTopology : true,

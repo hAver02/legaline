@@ -9,7 +9,9 @@ const config = {
     dbName : process.env.DB_NAME,
 
     email : process.env.EMAIL,
-    contraseñaEmail : process.env.PASSWORD_EMAIL
+    contraseñaEmail : process.env.PASSWORD_EMAIL,
+    passwordMongo : process.env.PASSWORD_MONGO
+    
 }
 
 

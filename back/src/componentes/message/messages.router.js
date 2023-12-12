@@ -12,7 +12,6 @@ const validatorHandler = require('./../../middleware/validator.handler')
 
 
 route.get('/', 
-    // validateToken,    
     validateHandler(getMessagesSchema, 'query'),
 async (req, res, next) => {
     try {
