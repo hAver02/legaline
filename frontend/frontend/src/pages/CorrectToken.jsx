@@ -18,7 +18,7 @@ export function CorrectToken(){
         console.log(rta);
         // if(!rta.ok) return navigate('/')
     }
-    // validate()
+    validate()
 
     return <Outlet />
 }

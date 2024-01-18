@@ -65,7 +65,7 @@ route.post('/logout', async (req, res) => {
 route.post('/validateToken', async(req, res, next) => {
     const { token } = req.body
 
-    console.log(token);
+
     if(!token) return res.json({ok : false})
     try {
         const validate = jwt.verify(token, 'SECRET-TOKEN', async (error, user) => {

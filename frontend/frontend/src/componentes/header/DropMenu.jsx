@@ -39,7 +39,7 @@ export function DropMenu () {
             }, 2000)
         }
     },[error, solicitud])
-    // console.log(isOpen);
+
     return (
         <div className="dropdown-menu relative inline-block">
             <button className=" menu-button bg-green-400 text-white rounded-2xl py-4 px-6 cursor-pointer" onClick={toggleMenu}>
@@ -49,28 +49,35 @@ export function DropMenu () {
             </button>
         {isOpen && (
             <div className="options absolute top-full right-0 bg-gray-600 w-[250px] flex flex-col opacity-0">
-                <button className="option px-5 py-3 bg-gray-600 text-blue-500 cursor-pointer hover:text-green-400" onClick={() => {
-                    setAgregarAmigo(true) 
-                    setIsOpen(false)
-                }}>
+                <button className="option px-5 py-3 bg-gray-600 text-blue-500 cursor-pointer hover:text-green-400" 
+                    onClick={() => {
+                        setAgregarAmigo(true) 
+                        setIsOpen(false)
+                    }}
+                >
                     Agregar amigos
                 </button>
-                <button className="option px-5 py-3 bg-gray-600 text-blue-500 cursor-pointer hover:text-green-400" onClick={async () => {
-                    const rta = await logOut()
-                    navigate('/login')
-                }}>
+                <button className="option px-5 py-3 bg-gray-600 text-blue-500 cursor-pointer hover:text-green-400"
+                    onClick={async () => {
+                        const rta = await logOut()
+                        setIsOpen(false)
+                    
+                        navigate('/login')
+                    }}
+                >
                     Logout
                 </button>
             </div>
         )}
 
         {agregarAmigo && (
-                    <form 
-className="add-friend-form absolute top-full right-0 bg-gray-600 flex flex-col gap-3 items-center w-[250px] py-3" 
-                    onSubmit={handleSubmit(async (values) => {
-                        const rta = await addFriend(values.emailFriend)
-                        if (!rta.data.ok) setError(true)
-                        else setSolicitud(true)                        
+                    <form className="add-friend-form absolute top-full right-0 bg-gray-600 flex flex-col gap-3 items-center w-[250px] py-3" 
+                        onSubmit={handleSubmit(async (values) => {
+                            console.log(values);
+                            const rta = await addFriend(values.emailFriend)
+                            console.log(rta);
+                            if (!rta.data.ok) setError(true)
+                            else setSolicitud(true)                        
                     })}>
                         <div className=" flex flex-col gap-1">
                             <label className="text-blue-200">Ingrese el mail del usuario</label>

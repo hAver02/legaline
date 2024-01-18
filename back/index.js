@@ -28,16 +28,15 @@ const PORT = 3000
 app.use(cookieParser())
 
 app.use(cors({
-    origin : '*',
-    credentials : true
-}))
+    origin: ['http://localhost:5173', '*'], // Reemplaza con la URL de tu aplicación cliente
+    credentials: true,
+  }))
 
 app.use(express.urlencoded( { extended : false } ) )
 
 app.use(express.json())
 
 const conectDB = async () => {
-    console.log('aca');
     await mongoDBconnection()
 }
 

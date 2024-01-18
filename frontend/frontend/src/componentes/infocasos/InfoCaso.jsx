@@ -1,79 +1,16 @@
+import { useCaso } from "../../hooks/useCaso";
+import { useContext,} from "react";
 
-import { useContext, useEffect, useState } from "react";
-import { formatDateToYYYYMMDD, isValidDateFormat } from '../../utils/formatear.Date'
 import { InfoPersonal } from "./InfoPersonal";
 import { InfoTrabajo } from "./InfoTrabajo"
 import { InfoReco } from "./infoReco";
 import { InfoClaves } from "./infoClaves";
-import { UserContext } from "../../context/userContext";
-import { getCase, updatedCaso } from "../../api/auth";
-import { CasosContext } from "../../context/casoContext";
+
 
 
 export function InfoCaso ({caso}) {
 
-  const { idUser } = useContext(UserContext)
-  const { datosCaso, setDatosCaso, isEditing, setIsEditing} = useContext(CasosContext)
-  useEffect(() => {
-    const getInfoCase = async () => {
-      const rta = await getCase(caso)
-      if(rta.data.ok) return setDatosCaso({...rta.data.caso, fechaNac : formatDateToYYYYMMDD(rta.data.caso.fechaNac)})
-    }
-    getInfoCase()
-  }, [caso])
-
-
-    const handleEditUser = async (newCaso) => {
-      console.log(newCaso);
-      const updated = await updatedCaso(newCaso, caso)
-      console.log(updated);
-      setDatosCaso(newCaso)
-    };
-    const handleInputChange = (e) => {
-      const { name, value } = e.target;
-      if(name == 'fechaNac'){
-        if(isValidDateFormat(value)){
-          // setFormErrorPersonal(false)
-          setDatosCaso({ ...datosCaso, [name]: value });
-        }
-        else{
-          setDatosCaso({ ...datosCaso, [name]: value });
-          setFormErrorPersonal(true)
-        }
-      }
-      else if(name == "recoAnses" || name === "recoIPS"){
-        if(e.target.checked){
-          setDatosCaso({...datosCaso, [name] : true})
-        }else{
-          setDatosCaso({...datosCaso, [name] : false})
-        }
-        return
-      }
-      else{
-  
-        setDatosCaso({ ...datosCaso, [name]: value });
-      }
-    };
-    const handleEditButtonClick = (e) => {
-      e.preventDefault()
-      setIsEditing(true);
-    };
-    const handleSaveButtonClick = (e) => {
-      e.preventDefault()
-        setIsEditing(false);
-        handleEditUser(datosCaso);
-    
-    };
-    const addClave = () => {
-      let numeroRandom = Math.floor(Math.random() * 100) + 1;
-      numeroRandom = numeroRandom.toString()
-      claves.push( {nombre : numeroRandom , contraseña : 'Ingresar contraseña' } )
-      const newCaso = {... datosCaso, claves : claves}
-      setDatosCaso(newCaso)
-      handleEditUser(newCaso)
-    }
-    const claves = datosCaso?.claves || []
-
+    const { claves,isEditing ,addClave, handleEditButtonClick, handleSaveButtonClick, handleInputChange, handleEditUser, handleEditing } = useCaso(caso)
     return (
       <section className="flex flex-col h-full gap-3 mr-5">
           
@@ -96,9 +33,7 @@ export function InfoCaso ({caso}) {
                         onClick={handleSaveButtonClick}>
                         Guardar 
                       </button> 
-                      <button className="border-2 w-1/5 px-3 py-1 rounded-2xl bg-red-400 text-black hover:bg-red-500" onClick={() => {
-                        setIsEditing(false)
-                      }}>
+                      <button className="border-2 w-1/5 px-3 py-1 rounded-2xl bg-red-400 text-black hover:bg-red-500" onClick={handleEditing}>
                         Cancelar
                       </button>
                   </div>)

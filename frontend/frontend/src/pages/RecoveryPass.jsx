@@ -9,7 +9,7 @@ export function RecoveryPass(){
     const { register, handleSubmit } = useForm()
     const [sentForm, setSentForm] = useState(false)
     const navigate = useNavigate()
-    console.log(sentForm);
+    // console.log(sentForm);
     return (
         <div className="flex h-4/5 w-3/6 m-auto py-10" >
             <div className="bg-gray-900 w-full h-full flex flex-col gap-5 items-center rounded-3xl pt-20 relative">

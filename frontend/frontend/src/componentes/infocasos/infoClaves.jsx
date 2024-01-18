@@ -16,13 +16,6 @@ export function InfoClaves({ claves, addClave, handleEditUser }){
         }
     }
 
-    // const addClave = () => {
-    //     let numeroRandom = Math.floor(Math.random() * 100) + 1;
-    //     numeroRandom = numeroRandom.toString()
-    //     claves.push( {nombre : numeroRandom , contraseña : 'indicar contraseña' } )
-    //     setDatosCaso({... datosCaso, claves : claves})
-    // }
-
     const deleteClave = (nombre) => {
         // console.log(e.target.className);
         const ind = claves.findIndex(cla => cla.nombre ===  nombre)
