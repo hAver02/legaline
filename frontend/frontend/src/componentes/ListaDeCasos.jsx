@@ -1,17 +1,14 @@
 import { useContext, useState } from "react"
 import { UserContext } from "../context/userContext"
-
 import { CasosContext } from "../context/casoContext"
+import { useListaCasos } from "../hooks/useListaCasos"
 import { ChatContext } from "../context/chatContext"
 
-import { useListaCasos } from "../hooks/useListaCasos"
-
-export function ListaDeCasos () {
+export function ListaDeCasos ({setCurrentChat}) {
 
     const { setPageAlarmas } = useContext(UserContext)
     const { setInfoCaso, setIdCaso} = useContext(CasosContext)
-    const { setChat } = useContext(ChatContext)
-
+    const {setNombreChat} = useContext(ChatContext)
     const [ searchCaso, setSearchCaso ] = useState('')
     const { addCaso, isThereNoti, marcarLeido, filterCasos} = useListaCasos({searchCaso})
 
@@ -28,9 +25,10 @@ export function ListaDeCasos () {
                 <ul className="flex flex-col gap-1 list-none">
                     {filterCasos.map(caso => (
                         <li key={caso?.apellido} className="lista-casos flex items-center py-2 justify-around w-full border-2 cursor-pointer border-green-300 rounded-2xl hover:bg-gray-900">
-                            <span className={caso?.chat} onClick={(e) => {
+                            <span onClick={(e) => {
+                                setNombreChat(caso.apellido)
                                 setPageAlarmas(false)
-                                setChat([e.target.className, e.target.textContent,])
+                                setCurrentChat(caso.chat)
                                 setInfoCaso("")
                                 setIdCaso([caso._id, caso.apellido])
                                 marcarLeido(caso?.chat)

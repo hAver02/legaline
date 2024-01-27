@@ -1,7 +1,4 @@
 
-
-
-
 import { getHours, getMinutes } from 'date-fns'
 export function Message ({ mess, whoSent }) {
     

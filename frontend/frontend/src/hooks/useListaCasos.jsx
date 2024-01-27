@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react"
 import { CasosContext } from "../context/casoContext"
-import { getMessagesByChats } from "../api/auth"
+import { getMessagesByChats, updateMessagesLeidos } from "../api/auth"
 import { ChatContext } from "../context/chatContext"
 import { UserContext } from "../context/userContext"
 import { useNavigate  } from 'react-router-dom'
@@ -51,12 +51,8 @@ export function useListaCasos ({searchCaso}){
 
     const marcarLeido = async (idChat) => {
         const messages = structuredClone(messagesForChat[idChat]) || []
-        // console.log(messages);
         const unreadMessages = messages.filter(message => !message.leido.includes(idUser))
-        // console.log(unreadMessages);
-        
         if(unreadMessages.length == 0 )return
-
         const idsMessages = unreadMessages.map(messa => (
             messa._id
         ))

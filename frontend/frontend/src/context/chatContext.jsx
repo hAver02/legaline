@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export const ChatContext = createContext()
 
@@ -7,7 +7,7 @@ export const ChatContext = createContext()
 
 export function ChatProvider({children}){
     
-    const [chat, setChat] = useState([])
+    const [nombreChat, setNombreChat] = useState('')
     const [messages, setMessages] = useState([])
     const [message, setMessage] = useState('')
     const [usersChat, setUserChat ] = useState([])
@@ -18,10 +18,11 @@ export function ChatProvider({children}){
         setMessages(state => [...state, mess])
     }
     
+
     return(
-        <ChatContext.Provider value={{chat, setChat, messages, setMessages, message, 
+        <ChatContext.Provider value={{ messages, setMessages, message, 
             setMessage, usersChat, setUserChat, forms, setForms, receiveMessage,
-            messagesForChat, setMessagesForChat
+            messagesForChat, setMessagesForChat,nombreChat, setNombreChat
         }}>
             {children}
         </ChatContext.Provider>
