@@ -6,6 +6,8 @@ const { config } = require('../config/config');
 // `mongodb://${config.dbHost}:${config.dbPort}/${config.dbName}`
 
 const connectUrl = `mongodb+srv://legaline:${config.passwordMongo}@cluster0.r0uayat.mongodb.net/?retryWrites=true&w=majority`
+
+
 const configConnection = {
     url : connectUrl,
     options : {

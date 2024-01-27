@@ -48,7 +48,7 @@ app.use('/chat', chatRoutes)
 app.use('/casos', casosRoutes)
 app.use('/notificaciones', notiRoutes)
 
-app.use(logError)
+// app.use(logError)
 app.use(handleError)
 
 const io = new Server(server, {
@@ -68,12 +68,12 @@ io.on('connection',  (socket) => {
     })
 } )
 
-app.use('/', (req, res) => {
-    res.status(404).json({
-        ok : false,
-        message : 'notfound'
-    })
-})
+// app.use('/', (req, res) => {
+//     return res.status(404).json({
+//         ok : false,
+//         message : 'notfound'
+//     })
+// })
 
 
 

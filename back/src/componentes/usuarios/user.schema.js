@@ -18,7 +18,10 @@ const createUserSchema = Joi.object({
     email : email.required(),
     password : password.required()
 });
-
+const loginSchema = Joi.object({
+    email : email.required(),
+    password : password.required()
+})
 const idSchema = Joi.object({
     id : id.required()
 })
@@ -38,4 +41,4 @@ const addAmigoSchema = Joi.object({
     email : email.required()
 })
 
-module.exports = { addAmigoSchema ,createUserSchema, idSchema, updateUserSchema, caseToUserSchema}
+module.exports = { addAmigoSchema ,createUserSchema, idSchema, updateUserSchema, caseToUserSchema, loginSchema}

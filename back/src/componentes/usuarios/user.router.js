@@ -73,6 +73,7 @@ route.put('/addCase/user',
     validateToken,
     validatorHandler(caseToUserSchema, 'body'),
 async (req, res, next) => {
+    // console.log('prueba', req.userID);
     const ids = req.body;
     try {
         const update = await controller.addCase(ids.idCase, ids.idUser)
@@ -121,7 +122,6 @@ route.post('/changePassword', async (req, res, next) => {
         const {password, password2, token } = req.body
         if(!token) return res.json({ok : false, message : 'doesnt exist token'})
         if(!password === password2) return res.json({ok : false, message : 'The passwords are different'})
-        console.log(token);
         jwt.verify(token, 'SECRET-TOKEN', async (error, user) => {
             if(error) return res.json({ ok : false, message : error.message })
             const { id } = user

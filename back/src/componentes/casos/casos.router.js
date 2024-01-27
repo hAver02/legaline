@@ -29,7 +29,6 @@ route.post('/',
     validatorHandler(createCasoSchema, 'body'),
 async (req, res, next) => {
     try {
-        console.log('reqbody', req.body);
         const {caso, userChats} = req.body
         // CREAMOS UN CASO Y UN CHAT
         const addCaso = await controller.addCaso(caso, req.userID, userChats)
@@ -73,8 +72,6 @@ async (req, res, next) => {
         console.log('llega o problemas con el validator?');
         const { id } = req.params
         const body = req.body
-        console.log(body);
-        console.log(id);
         const updated = await controller.updatedCase(id, body)
         res.json({ ok : true, message : 'case updated succesfully'})
     } catch (error) {
@@ -124,6 +121,7 @@ async(req, res, next) => {
 route.put('/addAlarma/:idCase/:idNotificacion',
     validateToken,
 async (req, res, next) => {
+    console.log(req.params);
     try {
         const { idCase, idNotificacion } = req.params
         const addAlarm = await controller.addAlarma(idCase, idNotificacion)

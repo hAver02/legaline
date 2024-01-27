@@ -52,7 +52,7 @@ async function getMessagesByChat(chat){
 
 async function getMessagesByChats(chats){
     try {
-        const messages = await messageModel.find({chat : { $in : chats }})
+        const messages = await messageModel.find({chat : { $in : chats }}).populate('user')
         return messages
     } catch (error) {
         throw Error('Error al obtener los mensajes')

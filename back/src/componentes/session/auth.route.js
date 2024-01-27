@@ -1,11 +1,11 @@
 const { Router } = require('express')
 const jwt = require('jsonwebtoken')
 const bycrypt = require('bcryptjs')
-
 const {config} = require('./../../config/config')
+
 const { createTokenJWT, createTokenRecoverPassord } = require('../../utils/jwt')
 const validatorHandler = require('../../middleware/validator.handler')
-const { createUserSchema } = require('../usuarios/user.schema')
+const { createUserSchema, loginSchema } = require('../usuarios/user.schema')
 const transporter = require('./../../utils/mailer')
 const controller = require('../usuarios/user.controller')
 const route = Router()
@@ -14,6 +14,7 @@ route.post('/register',
     validatorHandler(createUserSchema, 'body'),
 async (req, res, next) => {
     try {
+        console.log('aca mo llega');
         const { email, nombre, password } = req.body
         
         const hashPass = await bycrypt.hash(password, 10)
@@ -27,12 +28,14 @@ async (req, res, next) => {
         res.cookie('token', token)
         res.json({ ok : true, userID :  user._id })
     } catch (error) {
-        console.log(error);
+        // console.log(error);
         next(error)
     }
 })
 
-route.post('/login', async (req, res) => {
+route.post('/login', 
+    validatorHandler(loginSchema, 'body'),
+async (req, res) => {
     try {
         const { email, password} = req.body
 
@@ -59,7 +62,7 @@ route.post('/login', async (req, res) => {
 
 route.post('/logout', async (req, res) => {
     res.cookie('token', '', {expires : new Date(0)})
-    res.send('eliminado')
+    return res.json({ok : true,  message : 'logout succesfully'})
 })
 
 route.post('/validateToken', async(req, res, next) => {

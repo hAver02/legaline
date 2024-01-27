@@ -14,7 +14,7 @@ function logError (err, req, res, next){
 
 function handleError(error, req, res, next) {
     const message = error.toString()
-    res.json({
+    return res.json({
         ok : false,
         message,
     })
