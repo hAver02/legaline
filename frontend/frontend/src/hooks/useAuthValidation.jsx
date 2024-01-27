@@ -9,7 +9,7 @@ export function useAuthValidation (){
     const { setCasos } = useContext(CasosContext)
     useEffect(() => {
         if(idUser == "") return 
-        fetch(`http://127.0.0.1:3000/user/${idUser}`)
+        fetch(`${import.meta.env.VITE_BACKEND_URL}/user/${idUser}`)
         .then(res => res.json())
         .then(data => {
             if(!data.ok) return // Mostrar algun tipo de error.

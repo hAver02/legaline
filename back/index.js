@@ -1,15 +1,13 @@
-
-
 const express = require('express');
 const http = require('http')
-const cron = require('node-cron')
-const nodemailer = require('nodemailer')
+
 const cors = require('cors')
 const { Server } = require('socket.io')
-// const sendAlarmEmail = require('./src/utils/cron')
+
 const { logError, handleError } = require('./src/middleware/error.handler');
 const  { mongoDBconnection } = require('./src/database/mongo.config')
 const cookieParser = require('cookie-parser');
+const {config} = require('./src/config/config')
 
 const messageRoutes = require('./src/componentes/message/messages.router')
 const userRoutes = require('./src/componentes/usuarios/user.router')
@@ -53,7 +51,7 @@ app.use(handleError)
 
 const io = new Server(server, {
     cors: {
-        origin : "http://localhost:5173"
+        origin : config.hostDeploy || "http://localhost:5173"
     }
 })
 

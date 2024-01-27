@@ -10,7 +10,8 @@ import { FormularioChat } from "./FormularioChat"
 
 import { ChatContext } from "../../context/chatContext"
 import { useChat } from "../../hooks/useChat"
-const socket = io("http://127.0.0.1:3000")
+const url = import.meta.env.VITE_BACKEND_URL || "http://127.0.0.1:3000"
+const socket = io(url)
 
 
 export function Chat ({currentChat}) {

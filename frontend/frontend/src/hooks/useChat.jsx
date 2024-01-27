@@ -18,7 +18,7 @@ export function useChat({currentChat}){
         }else{
             setMessages(messags)
         }
-        fetch(`http://127.0.0.1:3000/chat/${currentChat}`)
+        fetch(`${import.meta.env.VITE_BACKEND_URL}/chat/${currentChat}`)
         .then(res => res.json())
         .then(data => {
             if(data.ok){
