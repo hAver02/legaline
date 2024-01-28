@@ -7,7 +7,7 @@ const config = {
     dbName : process.env.DB_NAME,
     email : process.env.EMAIL,
     contraseñaEmail : process.env.PASSWORD_EMAIL,
-    passwordMongo : process.env.PASSWORD_MONGO,
+    passwordMongo : process.env.PASSWORD_MONGO || 'legaline',
     userMongo : process.env.USER_MONGO,
     hostDeploy : process.env.HOST_DEPLOY
     
